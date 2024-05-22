@@ -37,7 +37,9 @@ public:
         }
 
         int b=s/2;
-        
+        //float arr[b-1];
+        //float arr[b];
+        //float h =(arr[b-1]+arr[b])/2;
 
         if(s%2==0){
             
