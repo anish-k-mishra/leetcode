@@ -68,9 +68,9 @@ public:
     }
     int mincostTickets(vector<int>& days, vector<int>& costs) {
         int n = days.size();
-        //vector<int> dp(n+1, -1);
+        vector<int> dp(n+1, -1);
         //return solve(n, days, costs, 0);
-        //return solveMem(n, days, costs, 0, dp);
-        return solveTab(n, days, costs);
+        return solveMem(n, days, costs, 0, dp);
+        //return solveTab(n, days, costs);
     }
 };
