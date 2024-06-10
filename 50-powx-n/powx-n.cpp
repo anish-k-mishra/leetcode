@@ -18,7 +18,7 @@ public:
 
         }
         if(n<0){
-            ans = (1.0)/(ans);
+            ans = 1.0/ans;
         }
         return ans;
     }
