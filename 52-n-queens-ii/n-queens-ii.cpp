@@ -33,29 +33,29 @@ public:
         }
         return true;
     }
-    void solve(int col, int n, vector<string>& board, vector<vector<string>>& v, int &ans){
+    void solve(int col, int n, vector<string>& board, int &ans){
         if(col>= n){
-            v.push_back(board);
+            // v.push_back(board);
             ans++;
             return;
         }
         for(int row = 0; row<n; row++){
             if(isSafe(row, col, board, n)){
                 board[row][col] = 'Q';
-                solve(col+1, n, board, v, ans);
+                solve(col+1, n, board, ans);
                 board[row][col] = '.'; //backtrack
             }
         }
     }
     int totalNQueens(int n) {
-        vector<vector<string>>v;
+        
         vector<string>board(n);
         string s(n, '.');
         for(int i = 0; i<n; i++){
             board[i] = s;
         }
         int ans = 0;
-        solve(0, n, board, v, ans);
+        solve(0, n, board, ans);
         return ans;
     }
 };
