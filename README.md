@@ -1,1 +1,1 @@
-# leetcode
+Just coding for fun, for passion, for interest in problem solving, for solving the real life problems. I have been coding iN LeetCode since last last one and a half year, and yet did'nt thought of creating this repository for a long time. So, this repository does not contain all my contributions on LeetCode, still, coding for better future. # leetcode
