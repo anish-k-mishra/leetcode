@@ -1,24 +1,26 @@
+#include <bits/stdc++.h>
 class Solution {
 public:
-    int solve(int n, vector<int>&nums, int curr, int prev, vector<vector<int>>& dp){
-        if(curr == n){
+    int solve(vector<int>&nums, int n){
+        if(n == 0){
             return 0;
         }
-        if(dp[curr][prev+1] != -1){
-            return dp[curr][prev+1];
+        vector<int>ans;
+        ans.push_back(nums[0]); //1st element undergoes no comparison and has to be pushed
+        for(int i = 1; i<n; i++){
+            if(nums[i]>ans.back()){
+                ans.push_back(nums[i]);
+
+            }
+            else{
+                //find the just greater element index
+                int ind = lower_bound(ans.begin(), ans.end(), nums[i]) - ans.begin();
+                ans[ind] = nums[i];
+            }
         }
-        //include
-        int incl = 0;
-        if(prev == -1 || nums[curr]>nums[prev]){
-            incl = 1 + solve(n, nums, curr+1, curr, dp);
-        }
-        //exclude
-        int excl = 0 + solve(n, nums, curr+1, prev, dp);
-        return dp[curr][prev+1] = max(incl, excl);
+        return ans.size();
     }
     int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
-        vector<vector<int>>dp(n, vector<int>(n+1, -1));
-        return solve(nums.size(), nums, 0, -1, dp);
+        return solve(nums, nums.size());
     }
 };
