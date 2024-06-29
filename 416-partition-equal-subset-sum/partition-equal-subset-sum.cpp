@@ -1,28 +1,33 @@
 class Solution {
 public:
-    bool solve(vector<int>& nums, int ind, int sum, int curr, vector<vector<int>>& dp) {
-        if (curr > sum) return false; // Current sum exceeds target sum
-        if (ind >= nums.size()) return sum == curr; // Check if the entire array is processed
-
-        if (dp[ind][curr] != -1) {
-            return dp[ind][curr];
+    bool solve(vector<int>&nums, int ind, int target, vector<vector<int>>&dp){
+        if(ind>=nums.size()){
+            return 0;
+        }
+        if(target < 0){
+            return 0;
+        }
+        if(target == 0){
+            return 1;
+        }
+        if(dp[ind][target] != -1){
+            return dp[ind][target];
         }
 
-        bool take = solve(nums, ind + 1, sum, curr + nums[ind], dp);
-        bool notTake = solve(nums, ind + 1, sum, curr, dp);
+        bool incl = solve(nums, ind+1, target-nums[ind], dp);
+        bool excl = solve(nums, ind+1, target, dp);
 
-        return dp[ind][curr] = take || notTake;
+        return dp[ind][target] = (incl || excl);
     }
-
     bool canPartition(vector<int>& nums) {
-        int sum = accumulate(nums.begin(), nums.end(), 0);
-        if (sum % 2 != 0) {
-            return false;
+        int sum = 0;
+        for(int i = 0; i<nums.size(); i++){
+            sum += nums[i];
         }
-
-        int target = sum / 2;
-        vector<vector<int>> dp(nums.size(), vector<int>(target + 1, -1));
-
-        return solve(nums, 0, target, 0, dp);
+        if(sum%2 == 0){
+            vector<vector<int>>dp(nums.size()+1, vector<int>(sum+1, -1));
+            return solve(nums, 0, sum/2, dp);
+        }
+        return false;
     }
 };
