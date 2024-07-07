@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
+    int maxProfit(vector<int>& prices) { //Bottom up dp with SO
         vector<int>curr(2, 0);
         vector<int>next(2, 0);
         for(int ind = prices.size()-1; ind>=0; ind--){
