@@ -22,36 +22,44 @@ public:
         }
         return ans;
     }
-    int solveTab(string&a, string&b){
+    int solveTabSO(string&a, string&b){
         vector<vector<int>>dp(a.length()+1, vector<int>(b.length()+1, 0));
-        for(int i = 0; i<a.length(); i++){
-            dp[i][b.length()] = a.length()-i;
-        }
+        vector<int>curr(b.length()+1, 0);
+        vector<int>next(b.length()+1, 0);
+        
         for(int j = 0; j<b.length(); j++){
-            dp[a.length()][j] = b.length()-j;
+            next[j] = b.length()-j;
         }
 
         for(int i = a.length()-1; i>=0; i--){
             for(int j = b.length()-1; j>=0; j--){
+                curr[b.length()] = a.length()-i;
                 int ans = 0;
                 if(a[i] == b[j]){
-                    ans = dp[i+1][j+1];
+                    ans = next[j+1];
                 }
                 else{
                     //insert
-                    int ins = 1+dp[i][j+1];
+                    int ins = 1+ curr[j+1];
                     //delete
-                    int del = 1+dp[i+1][j];
+                    int del = 1+ next[j];
                     //replace
-                    int rep = 1+dp[i+1][j+1];
+                    int rep = 1+ next[j+1];
                     ans = min(ins, min(del, rep));
                 }
-                dp[i][j] = ans;
+                curr[j] = ans;
             }
+            next = curr;
         }
-        return dp[0][0];
+        return next[0];
     }
     int minDistance(string word1, string word2) {
-        return solveTab(word1, word2);
+        if(word1.length() == 0){
+            return word2.length();
+        }
+        if(word2.length() == 0){
+            return word1.length();
+        }
+        return solveTabSO(word1, word2);
     }
 };
