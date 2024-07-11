@@ -21,7 +21,7 @@ public:
             if(s[i] == '(' || s[i] == ')'){
                 dir = dir*(-1);
                 i = v[i] + dir;
-                continue;
+                //continue;
             }
             else{
                 ans += s[i];
