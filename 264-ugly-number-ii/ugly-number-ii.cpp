@@ -1,24 +1,25 @@
-#include <vector>
-#include <algorithm>
-using namespace std;
-
 class Solution {
 public:
     int nthUglyNumber(int n) {
-        vector<int> dp(n);
-        dp[0] = 1;  // The first ugly number is 1
-        
+        vector<int>v(n);
+        v[0] = 1;
         int p2 = 0, p3 = 0, p5 = 0;
-        
-        for (int i = 1; i < n; ++i) {
-            int nextUgly = min({dp[p2] * 2, dp[p3] * 3, dp[p5] * 5});
-            dp[i] = nextUgly;
-            
-            if (nextUgly == dp[p2] * 2) p2++;
-            if (nextUgly == dp[p3] * 3) p3++;
-            if (nextUgly == dp[p5] * 5) p5++;
+
+        for(int i = 1; i<n; i++){
+            int nxtUgly = min(v[p2]*2, min(v[p3]*3, v[p5]*5));
+            v[i] = nxtUgly;
+
+            if(nxtUgly == v[p2]*2){
+                p2++;
+            }
+            if(nxtUgly == v[p3]*3){
+                p3++;
+            }
+            if(nxtUgly == v[p5]*5){
+                p5++;
+            }
+
         }
-        
-        return dp[n - 1];
+        return v[n-1];
     }
 };
