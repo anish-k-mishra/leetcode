@@ -3,7 +3,7 @@ public:
     map<int, int> m;
 
     MyCalendar() {
-        
+
     }
 
     bool book(int start, int end) {
@@ -12,7 +12,7 @@ public:
 
            
             if (it != m.begin()) {
-                --it;
+                it--;
                 
                 if (it->second > start) {
                     return false;
