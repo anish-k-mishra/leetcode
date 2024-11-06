@@ -10,7 +10,7 @@ public:
             if(nums[r] == 0){
                 zerocnt++;
             }
-            while(zerocnt >k){
+            if(zerocnt > k){
                 if(nums[l] == 0){
                     l++;
                     zerocnt--;
@@ -18,6 +18,7 @@ public:
                 else{
                     l++;
                 }
+                
             }
             int len = r-l+1;
             maxlen = max(len, maxlen);
