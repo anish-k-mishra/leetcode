@@ -28,7 +28,8 @@ public:
         for (int i = 0; i < queries.size(); i++) {
             if (queries[i][0] == 0) {
                 ans.push_back(pre[queries[i][1]]);
-            } else {
+            } 
+            else {
                 ans.push_back(pre[queries[i][1]] - pre[queries[i][0] - 1]);
             }
         }
