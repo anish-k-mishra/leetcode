@@ -13,7 +13,7 @@ public:
                 oddcnt++;
             }
         }
-        if(oddcnt <= k){
+        if(oddcnt <= k){ //because if oddcount is > k then it cannot have pair to match with to be palindrome
             return true;
         }
         return false;
